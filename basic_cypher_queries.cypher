@@ -18,3 +18,8 @@ CREATE (jorge)-[:FRIEND]->(jose);
 Obter todos os nós, equivalente a select *
 */
 MATCH (n) RETURN n;
+
+/*
+Obter todas as relações do banco
+*/
+MATCH ()-[r]->() RETURN r;
