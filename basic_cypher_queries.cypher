@@ -9,6 +9,12 @@ CREATE (jorge: Person {name: "Jorge", sex: "M", phone: "988887777"});
 
 
 /*
+Criação de relações entre nós
+*/
+CREATE (jose)-[:FRIEND]->(ana)-[:FRIEND]->(jorge);
+CREATE (jorge)-[:FRIEND]->(jose);
+
+/*
 Obter todos os nós, equivalente a select *
 */
 MATCH (n) RETURN n;
