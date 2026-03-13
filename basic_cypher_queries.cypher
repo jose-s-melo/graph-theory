@@ -65,3 +65,32 @@ ORDER BY grau_de_saida DESC
 LIMIT 5
 RETURN u.name, grau_de_saida;
 
+
+MATCH (u1:USER {label: "Tina"}), (u2:USER {label: "Jason"})
+MATCH p = shortestPath((u1)-[*..100]-(u2))
+WHERE id(u1)=203 AND id(u2)=201
+RETURN length(p) AS distancia;
+
+
+
+
+
+/*
+Encontra o menor caminho entre esses vértices 
+*/
+MATCH (u)
+WHERE elementId(u) IN [
+"4:9ca44784-5d24-44a9-b1a4-1e8b907ef13d:203",
+"4:9ca44784-5d24-44a9-b1a4-1e8b907ef13d:414",
+"4:9ca44784-5d24-44a9-b1a4-1e8b907ef13d:939",
+"4:9ca44784-5d24-44a9-b1a4-1e8b907ef13d:201",
+"4:9ca44784-5d24-44a9-b1a4-1e8b907ef13d:247"
+]
+WITH collect(u) AS users
+UNWIND users AS a
+UNWIND users AS b
+WITH a, b WHERE id(a) < id(b)
+
+MATCH p = shortestPath((a)-[*]-(b))
+RETURN a, b, length(p) AS distancia, p
+ORDER BY distancia;
