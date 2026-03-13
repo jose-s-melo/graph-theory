@@ -94,3 +94,10 @@ WITH a, b WHERE id(a) < id(b)
 MATCH p = shortestPath((a)-[*]-(b))
 RETURN a, b, length(p) AS distancia, p
 ORDER BY distancia;
+
+/*
+Os usuários são proximos entre si, eles avaliam negocios em comum
+feita uma analise do subgrafo que contem esses usuarios a distancia
+minima encontrada entre eles é de tamanho 2, então considero que eles são
+usuarios proximos e que tendem a ter o mesmo gosto.
+*/
